@@ -10,7 +10,7 @@
 const https = require('https');
 
 const UPSTOX_BASE = 'https://api.upstox.com/v2';
-const TOKEN = process.env.UPSTOX_TOKEN || '';
+const TOKEN = process.env.UPSTOX_ANALYTICS_TOKEN || '';
 
 function fetchUpstox(path, ms = 15000) {
   return new Promise((resolve, reject) => {
