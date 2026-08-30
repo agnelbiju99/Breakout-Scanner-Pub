@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/api/upstox-proxy(.*)", "dest": "/api/upstox-proxy" },
+    { "src": "/api/candles(.*)", "dest": "/api/candles" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
