@@ -492,555 +492,13 @@
   .pattern-rules li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 10px; top: 4px; }
   .pattern-rules li strong { color: var(--text); }
 
-  /* Mode Toggle */
-  .mode-toggle {
-    display: flex;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 3px;
-    gap: 2px;
-  }
-  .mode-btn {
-    padding: 7px 16px;
-    border-radius: 8px;
-    border: none;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px; font-weight: 600;
-    cursor: pointer;
-    color: var(--muted);
-    background: none;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  .mode-btn.active {
-    background: var(--surface);
-    color: var(--text);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
-  }
-  .mode-btn.intraday.active { color: var(--accent); border: 1px solid rgba(0,212,170,0.3); }
-  .mode-btn.swing.active { color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); }
-
-  /* Health tag badges */
-  .health-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
-  .htag {
-    font-size: 10px; font-weight: 600;
-    padding: 1px 7px; border-radius: 4px;
-    font-family: 'Space Grotesk', sans-serif;
-  }
-  .htag-good { background: rgba(0,200,150,0.12); color: var(--bull); }
-  .htag-warn { background: rgba(245,158,11,0.12); color: var(--warn); }
-  .htag-bad  { background: rgba(255,77,109,0.12); color: var(--bear); }
-  .htag-info { background: rgba(59,130,246,0.12); color: var(--accent2); }
-
-  /* Suit badge — Intraday / Swing */
-  .suit-badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 10px; font-weight: 700;
-    padding: 2px 8px; border-radius: 4px;
-    font-family: 'Space Grotesk', sans-serif;
-    text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .suit-intraday { background: rgba(0,212,170,0.12); color: var(--accent); border: 1px solid rgba(0,212,170,0.2); }
-  .suit-swing    { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.2); }
-  .suit-both     { background: rgba(245,158,11,0.12); color: var(--warn); border: 1px solid rgba(245,158,11,0.2); }
-
-  /* Mode-aware filter visibility */
-  .swing-only { display: none; }
-  body.swing-mode .swing-only { display: block; }
-  body.swing-mode .intraday-only { display: none; }
-
-  /* Swing target label in trade plan */
-  .plan-hold-label { font-size: 11px; color: var(--muted); margin-top: 8px; font-style: italic; }
-
-  /* Responsive mode toggle */
+  /* Responsive */
   @media (max-width: 768px) {
-    .mode-toggle { width: 100%; }
-    .mode-btn { flex: 1; text-align: center; padding: 9px 10px; }
-  }
-
-  .wl-tabs {
-    display: flex; gap: 6px; flex-wrap: wrap;
-    padding: 12px 18px 0;
-    border-bottom: 1px solid var(--border);
-    align-items: center;
-  }
-  .wl-tab {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 14px;
-    border-radius: 8px 8px 0 0;
-    border: 1px solid var(--border);
-    border-bottom: none;
-    font-size: 12px; font-weight: 600;
-    cursor: pointer;
-    background: var(--surface2);
-    color: var(--muted);
-    transition: all 0.2s;
-    position: relative; bottom: -1px;
-    font-family: 'Space Grotesk', sans-serif;
-  }
-  .wl-tab:hover { color: var(--text); border-color: var(--accent2); }
-  .wl-tab.active {
-    background: var(--surface);
-    color: var(--text);
-    border-color: var(--accent);
-    border-bottom-color: var(--surface);
-  }
-  .wl-tab .tab-count {
-    background: var(--surface2);
-    color: var(--muted);
-    font-size: 10px; font-weight: 700;
-    padding: 1px 6px; border-radius: 8px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .wl-tab.active .tab-count { background: rgba(0,212,170,0.15); color: var(--accent); }
-  .wl-tab .tab-delete {
-    color: var(--muted); font-size: 12px;
-    background: none; border: none; cursor: pointer;
-    padding: 0; line-height: 1;
-    transition: color 0.15s;
-  }
-  .wl-tab .tab-delete:hover { color: var(--bear); }
-  .wl-add-tab {
-    padding: 5px 10px;
-    border-radius: 8px;
-    border: 1px dashed var(--border);
-    background: none; color: var(--muted);
-    font-size: 12px; cursor: pointer;
-    font-family: 'Space Grotesk', sans-serif;
-    transition: all 0.2s;
-  }
-  .wl-add-tab:hover { border-color: var(--accent2); color: var(--accent2); }
-  .wl-rename-input {
-    background: var(--surface2);
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px; font-weight: 600;
-    padding: 4px 8px; outline: none;
-    width: 120px;
-  }
-
-  /* Stock Manager Panel */
-  .stock-manager {
-    margin: 0 28px 0;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--surface);
-  }
-  .stock-manager-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    user-select: none;
-  }
-  .stock-manager-header:hover { background: var(--surface2); }
-  .stock-manager-title {
-    font-size: 13px; font-weight: 600; color: var(--label);
-    text-transform: uppercase; letter-spacing: 0.8px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .stock-count-badge {
-    background: var(--accent2);
-    color: #fff;
-    font-size: 10px; font-weight: 700;
-    padding: 2px 7px; border-radius: 10px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .manager-toggle { color: var(--muted); font-size: 12px; transition: transform 0.2s; }
-  .manager-toggle.open { transform: rotate(180deg); }
-  .stock-manager-body { display: none; padding: 16px 18px; }
-  .stock-manager-body.open { display: block; }
-  .add-stock-row {
-    display: flex; gap: 8px; margin-bottom: 14px;
-  }
-  .add-stock-input {
-    flex: 1;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    padding: 8px 12px;
-    outline: none;
-    text-transform: uppercase;
-  }
-  .add-stock-input::placeholder { text-transform: none; color: var(--muted); }
-  .add-stock-input:focus { border-color: var(--accent); }
-  .add-stock-btn {
-    padding: 8px 16px;
-    background: var(--accent);
-    color: #0a0e1a;
-    border: none; border-radius: 8px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px; font-weight: 700;
-    cursor: pointer; white-space: nowrap;
-    transition: filter 0.2s;
-  }
-  .add-stock-btn:hover { filter: brightness(1.1); }
-  .sector-select-sm {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    padding: 8px 10px;
-    outline: none;
-    cursor: pointer;
-  }
-  .stock-chips {
-    display: flex; flex-wrap: wrap; gap: 6px;
-    max-height: 160px; overflow-y: auto;
-    padding: 4px 0;
-  }
-  .stock-chip {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-size: 12px; font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
-    color: var(--text);
-    transition: border-color 0.15s;
-  }
-  .stock-chip:hover { border-color: var(--bear); }
-  .stock-chip .chip-sector { color: var(--muted); font-size: 10px; font-weight: 400; }
-  .stock-chip .chip-remove {
-    color: var(--muted); cursor: pointer; font-size: 14px; line-height: 1;
-    padding: 0 0 0 2px;
-    background: none; border: none; font-family: inherit;
-    transition: color 0.15s;
-  }
-  .stock-chip .chip-remove:hover { color: var(--bear); }
-  .manager-actions {
-    display: flex; gap: 8px; margin-top: 12px; padding-top: 12px;
-    border-top: 1px solid var(--border);
-  }
-  .manager-action-btn {
-    font-size: 11px; padding: 5px 12px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--label); cursor: pointer;
-    font-family: 'Space Grotesk', sans-serif; font-weight: 500;
-    transition: all 0.15s;
-  }
-  .manager-action-btn:hover { border-color: var(--accent2); color: var(--text); }
-  .manager-action-btn.danger:hover { border-color: var(--bear); color: var(--bear); }
-
-  /* Trade Plan Modal */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.75);
-    z-index: 1000;
-    overflow-y: auto;
-    padding: 24px 16px;
-  }
-  .modal-overlay.active { display: flex; align-items: flex-start; justify-content: center; }
-  .modal {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    width: 100%;
-    max-width: 780px;
-    padding: 28px;
-    position: relative;
-  }
-  .modal-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 6px;
-  }
-  .modal-title { font-size: 18px; font-weight: 700; }
-  .modal-subtitle { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
-  .modal-close {
-    background: none; border: 1px solid var(--border);
-    color: var(--muted); width: 32px; height: 32px;
-    border-radius: 8px; cursor: pointer; font-size: 16px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-  .modal-close:hover { border-color: var(--bear); color: var(--bear); }
-
-  .plan-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-    transition: border-color 0.2s;
-  }
-  .plan-card:hover { border-color: rgba(0,212,170,0.3); }
-  .plan-card-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 14px;
-  }
-  .plan-sym { font-size: 16px; font-weight: 700; }
-  .plan-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .plan-score-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; font-weight: 700;
-    padding: 3px 10px; border-radius: 6px;
-    background: rgba(0,200,150,0.12);
-    color: var(--bull); border: 1px solid rgba(0,200,150,0.25);
-  }
-  .plan-fields {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-bottom: 12px;
-  }
-  .plan-field label {
-    display: block; font-size: 10px; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.6px;
-    margin-bottom: 4px; font-weight: 600;
-  }
-  .plan-field input {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    padding: 7px 10px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .plan-field input:focus { border-color: var(--accent); }
-  .plan-calc {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    font-size: 12px; color: var(--muted);
-    padding-top: 10px;
-    border-top: 1px solid var(--border);
-    font-family: 'JetBrains Mono', monospace;
-  }
-  .plan-calc span { color: var(--text); font-weight: 600; }
-  .plan-calc .rr-good { color: var(--bull); }
-  .plan-calc .rr-bad { color: var(--bear); }
-
-  .modal-actions {
-    display: flex; gap: 10px; margin-top: 20px;
-    padding-top: 20px; border-top: 1px solid var(--border);
-    flex-wrap: wrap;
-  }
-  .modal-btn {
-    padding: 9px 18px;
-    border-radius: 8px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px; font-weight: 600;
-    cursor: pointer; border: none;
-    transition: all 0.2s;
-  }
-  .modal-btn-primary { background: var(--accent); color: #0a0e1a; }
-  .modal-btn-primary:hover { filter: brightness(1.1); }
-  .modal-btn-secondary {
-    background: var(--surface2); color: var(--text);
-    border: 1px solid var(--border);
-  }
-  .modal-btn-secondary:hover { border-color: var(--accent2); }
-
-  .plan-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 7px 16px;
-    background: var(--accent2);
-    color: #fff; border: none;
-    border-radius: 8px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s;
-    margin-left: 10px;
-  }
-  .plan-btn:hover { filter: brightness(1.15); }
-
-  @media print {
-    body * { display: none !important; }
-    .modal-overlay, .modal-overlay *, .modal, .modal * { display: block !important; }
-    .modal-overlay { position: static; background: white; padding: 0; }
-    .modal { border: none; box-shadow: none; color: #000; background: white; }
-    .modal-header, .modal-actions, .modal-close, .plan-btn { display: none !important; }
-    .plan-card { border: 1px solid #ccc; background: #f9f9f9; }
-    .plan-field input { border: 1px solid #ccc; background: white; color: #000; }
-    .plan-sym, .plan-meta, .plan-field label, .plan-calc { color: #000 !important; }
-  }
-
-  /* Responsive — Mobile Optimization */
-  @media (max-width: 768px) {
-    html { -webkit-text-size-adjust: 100%; }
-
-    /* Header */
-    .header { padding: 10px 14px; flex-wrap: wrap; row-gap: 8px; }
-    .logo-text { font-size: 15px; }
-    .market-status { font-size: 11px; order: 3; width: 100%; }
-    .header-right { gap: 8px; }
-    .nifty-badge { font-size: 11px; padding: 5px 9px; }
-    .token-info { font-size: 11px; padding: 5px 9px; }
-    .logout-btn { padding: 4px 8px; font-size: 11px; }
-
-    /* Top bar / filters — stack and go full width */
-    .top-bar { padding: 12px 14px; flex-direction: column; align-items: stretch; gap: 10px; }
-    .filters { flex-direction: column; align-items: stretch; gap: 8px; width: 100%; }
-    .filter-select {
-      width: 100%;
-      font-size: 16px; /* prevents iOS auto-zoom on focus */
-      padding: 11px 12px;
-      min-height: 44px; /* Apple HIG tap target */
-    }
-    .scan-btn {
-      width: 100%;
-      justify-content: center;
-      padding: 13px 20px;
-      font-size: 14px;
-      min-height: 46px;
-    }
-
-    /* Summary cards — 2x2 grid, tighter padding */
     .summary-row { grid-template-columns: repeat(2, 1fr); }
-    .summary-card { padding: 12px 14px; }
-    .summary-card .s-val { font-size: 21px; }
-    .summary-card .s-label { font-size: 10px; }
-    .summary-card .s-sub { font-size: 10px; }
-
-    /* Section padding */
-    .results-section, .guide-section { padding: 14px; }
-    .section-title { font-size: 12px; margin-bottom: 12px; }
-
-    /* Tabs (Scanner Results / Pattern Guide) */
-    .tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .tab { padding: 12px 14px; font-size: 13px; white-space: nowrap; }
-
-    /* Results table → horizontal scroll with momentum, smaller cells */
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -14px;
-      padding: 0 14px;
-    }
-    table { font-size: 12px; }
-    th { padding: 8px 10px; font-size: 10px; }
-    td { padding: 9px 10px; font-size: 12px; }
-    .stock-name { font-size: 12px; }
-    .stock-sector { font-size: 10px; }
-    .signal-badge { font-size: 10px; padding: 2px 8px; }
-
-    /* Stock Manager / Watchlist panel */
-    .stock-manager { margin: 0 14px 0 !important; }
-    .stock-manager-header { padding: 12px 14px; flex-wrap: wrap; row-gap: 4px; }
-    .stock-manager-title { font-size: 12px; flex-wrap: wrap; }
-    .stock-manager-body { padding: 14px; }
-
-    /* Watchlist tabs */
-    .wl-tabs { padding: 10px 0 0; overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
-    .wl-tab { white-space: nowrap; padding: 7px 12px; font-size: 12px; }
-    .wl-add-tab { white-space: nowrap; padding: 7px 10px; }
-
-    /* Add stock row — stack input/select/button */
-    .add-stock-row { flex-direction: column; gap: 8px; }
-    .add-stock-input {
-      font-size: 16px; /* prevent iOS zoom */
-      padding: 11px 12px;
-      min-height: 44px;
-    }
-    .sector-select-sm {
-      width: 100%;
-      font-size: 14px;
-      padding: 10px 12px;
-      min-height: 44px;
-    }
-    .add-stock-btn { width: 100%; padding: 11px; min-height: 44px; font-size: 14px; }
-
-    /* Stock chips — wrap nicely, bigger tap target on remove */
-    .stock-chips { max-height: 200px; }
-    .stock-chip { padding: 6px 10px 6px 12px; font-size: 12px; }
-    .stock-chip .chip-remove { font-size: 18px; padding: 0 2px 0 6px; }
-
-    /* Manager action buttons — wrap into 2 columns */
-    .manager-actions { flex-wrap: wrap; gap: 8px; }
-    .manager-action-btn { flex: 1 1 calc(50% - 4px); padding: 9px 10px; font-size: 11px; min-height: 38px; }
-
-    /* Auth section */
-    #authSection > div { padding: 16px !important; }
-    .auth-section { max-width: 100%; }
-    .auth-section h2 { font-size: 18px; }
-    .auth-section p { font-size: 13px; }
-    .step-text { font-size: 13px; }
-    .input-group input, .input-group select { font-size: 16px; padding: 11px 12px; min-height: 44px; }
-    .btn { width: 100%; padding: 13px; font-size: 14px; min-height: 46px; }
-
-    /* Plan modal — stack fields vertically */
-    .modal-overlay { padding: 0; align-items: stretch; }
-    .modal {
-      max-width: 100%;
-      width: 100%;
-      min-height: 100vh;
-      border-radius: 0;
-      padding: 16px 14px 100px;
-    }
-    .modal-title { font-size: 16px; }
-    .modal-subtitle { font-size: 12px; margin-bottom: 16px; }
-    .modal-close { width: 36px; height: 36px; font-size: 18px; }
-
-    .plan-card { padding: 14px; margin-bottom: 12px; }
-    .plan-sym { font-size: 15px; }
-    .plan-meta { font-size: 10px; line-height: 1.5; }
-    .plan-fields {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-    }
-    .plan-field input {
-      font-size: 16px; /* prevent iOS zoom */
-      padding: 9px 10px;
-      min-height: 42px;
-    }
-    .plan-calc { font-size: 11px; gap: 10px 14px; }
-
-    .modal-actions {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: var(--surface);
-      padding: 12px 14px;
-      margin: 0;
-      border-top: 1px solid var(--border);
-      flex-wrap: nowrap;
-      z-index: 10;
-    }
-    .modal-btn { flex: 1; padding: 12px 10px; font-size: 12px; white-space: nowrap; min-height: 44px; }
-
-    .plan-btn { width: 100%; justify-content: center; margin-left: 0; padding: 11px; min-height: 44px; }
-
-    /* Scanner log */
-    .log-panel { margin: 0 14px 16px; }
-    .log-header { padding: 10px 14px; font-size: 11px; }
-    .log-body { font-size: 11px; padding: 10px 14px; max-height: 180px; }
-
-    /* Tabs wrapper (inline-styled padding) */
-    div[style*="padding: 20px 28px 0"] { padding: 14px 14px 0 !important; }
-
-    /* Pattern guide cards */
-    .pattern-grid { grid-template-columns: 1fr; gap: 12px; }
-    .pattern-card { padding: 14px; }
-
-    /* General tap target improvements */
-    button, select, input[type="text"], input[type="number"], input[type="password"] {
-      -webkit-tap-highlight-color: rgba(0,212,170,0.15);
-    }
-  }
-
-  /* Extra-small phones (under 380px) */
-  @media (max-width: 380px) {
-    .summary-row { grid-template-columns: 1fr 1fr; }
-    .summary-card .s-val { font-size: 18px; }
-    .logo-text { font-size: 14px; }
-    .plan-fields { grid-template-columns: 1fr; }
-    .manager-action-btn { flex: 1 1 100%; }
+    .top-bar { flex-direction: column; align-items: flex-start; }
+    .header { padding: 12px 16px; }
+    .results-section, .guide-section { padding: 16px; }
+    .log-panel { margin: 0 16px 16px; }
   }
 </style>
 </head>
@@ -1062,7 +520,7 @@
     <div id="tokenIndicator" style="display:none">
       <div class="token-info">
         <div class="token-dot"></div>
-        <span>Connected</span>
+        <span>Upstox Data</span>
         <button class="logout-btn" onclick="logout()">Logout</button>
       </div>
     </div>
@@ -1103,12 +561,6 @@
 <div class="main" id="mainSection">
 
   <div class="top-bar">
-    <!-- Mode Toggle -->
-    <div class="mode-toggle">
-      <button class="mode-btn intraday active" id="modeIntraday" onclick="setMode('intraday')">⚡ Intraday</button>
-      <button class="mode-btn swing" id="modeSwing" onclick="setMode('swing')">📈 Swing</button>
-    </div>
-
     <div class="filters">
       <select class="filter-select" id="universeFilter">
         <option value="nifty50">Nifty 50</option>
@@ -1116,32 +568,14 @@
         <option value="nifty200">Nifty 200</option>
         <option value="fnobanned" disabled>F&O Stocks (coming soon)</option>
       </select>
-
-      <!-- Intraday timeframes -->
-      <select class="filter-select intraday-only" id="tfFilter">
+      <select class="filter-select" id="tfFilter">
         <option value="1minute">1-min chart</option>
-        <option value="5minute">5-min chart</option>
         <option value="30minute" selected>30-min chart</option>
+        <option value="30minute">30-min chart</option>
       </select>
-
-      <!-- Swing timeframes -->
-      <select class="filter-select swing-only" id="swingTfFilter">
-        <option value="day">Daily (1D)</option>
-        <option value="week">Weekly (1W)</option>
-        <option value="month">Monthly (1M)</option>
-      </select>
-
-      <!-- Swing date range -->
-      <select class="filter-select swing-only" id="swingRangeFilter">
-        <option value="30">1 Month data</option>
-        <option value="90">3 Months data</option>
-        <option value="180" selected>6 Months data</option>
-        <option value="365">1 Year data</option>
-      </select>
-
       <select class="filter-select" id="volFilter">
         <option value="1.5">Vol surge ≥ 1.5x avg</option>
-        <option value="2" selected>Vol surge ≥ 2x avg</option>
+        <option value="2">Vol surge ≥ 2x avg</option>
         <option value="3">Vol surge ≥ 3x avg</option>
       </select>
       <select class="filter-select" id="minMoveFilter">
@@ -1149,75 +583,11 @@
         <option value="1">Min move ≥ 1%</option>
         <option value="1.5">Min move ≥ 1.5%</option>
       </select>
-      <select class="filter-select" id="minAvgVolFilter">
-        <option value="0">Any liquidity</option>
-        <option value="100000">Avg vol &gt; 1L</option>
-        <option value="500000" selected>Avg vol &gt; 5L ⭐</option>
-        <option value="1000000">Avg vol &gt; 10L</option>
-        <option value="5000000">Avg vol &gt; 50L</option>
-      </select>
     </div>
     <button class="scan-btn" id="scanBtn" onclick="runScan()">
       <div class="spinner" id="scanSpinner"></div>
       <span id="scanBtnText">▶ Run Scan</span>
     </button>
-  </div>
-
-  <!-- Multi-Watchlist Manager -->
-  <div class="stock-manager" style="margin-top:16px">
-    <div class="stock-manager-header" onclick="toggleManager()">
-      <div class="stock-manager-title">
-        📋 Watchlists
-        <span class="stock-count-badge" id="stockCountBadge">50</span>
-        <span id="activeWlName" style="font-size:11px;color:var(--accent);font-weight:600;text-transform:none;letter-spacing:0"></span>
-        <span id="savedIndicator" style="font-size:11px;color:var(--bull);opacity:0;transition:opacity 0.4s;font-weight:500;text-transform:none;letter-spacing:0">💾 Saved</span>
-      </div>
-      <span class="manager-toggle" id="managerToggle">▼ Manage</span>
-    </div>
-    <div class="stock-manager-body" id="stockManagerBody">
-      <!-- Watchlist Tabs -->
-      <div class="wl-tabs" id="wlTabs"></div>
-
-      <!-- Add Stock Row -->
-      <div style="padding:14px 0 0">
-        <div class="add-stock-row">
-          <input type="text" class="add-stock-input" id="newStockInput" placeholder="e.g. TATAMOTORS or ZOMATO, PAYTM" maxlength="100"
-            onkeydown="if(event.key==='Enter')addStock()" />
-          <select class="sector-select-sm" id="newStockSector">
-            <option value="Custom">Custom</option>
-            <option value="Banking">Banking</option>
-            <option value="IT">IT</option>
-            <option value="Auto">Auto</option>
-            <option value="FMCG">FMCG</option>
-            <option value="Pharma">Pharma</option>
-            <option value="Energy">Energy</option>
-            <option value="NBFC">NBFC</option>
-            <option value="Metal">Metal</option>
-            <option value="Infra">Infra</option>
-            <option value="Power">Power</option>
-            <option value="Telecom">Telecom</option>
-            <option value="Consumer">Consumer</option>
-            <option value="Retail">Retail</option>
-            <option value="Healthcare">Healthcare</option>
-            <option value="Insurance">Insurance</option>
-            <option value="Defence">Defence</option>
-            <option value="Logistics">Logistics</option>
-            <option value="Diversified">Diversified</option>
-            <option value="Cement">Cement</option>
-            <option value="Conglomerate">Conglomerate</option>
-            <option value="Mining">Mining</option>
-          </select>
-          <button class="add-stock-btn" onclick="addStock()">+ Add</button>
-        </div>
-        <div class="stock-chips" id="stockChips"></div>
-        <div class="manager-actions">
-          <button class="manager-action-btn" onclick="resetToNifty50()">↺ Reset to Nifty 50</button>
-          <button class="manager-action-btn" onclick="exportWatchlist()">⬇ Export</button>
-          <button class="manager-action-btn" onclick="importWatchlist()">⬆ Import</button>
-          <button class="manager-action-btn danger" onclick="clearAll()">✕ Clear All</button>
-        </div>
-      </div>
-    </div>
   </div>
 
   <div class="summary-row">
@@ -1287,444 +657,93 @@
 </div>
 
 <script>
-// ─── Stock Manager ────────────────────────────────────────
-const NIFTY50_DEFAULT = [
-  {sym:'RELIANCE',sector:'Energy'},{sym:'TCS',sector:'IT'},{sym:'HDFCBANK',sector:'Banking'},
-  {sym:'INFY',sector:'IT'},{sym:'ICICIBANK',sector:'Banking'},{sym:'HINDUNILVR',sector:'FMCG'},
-  {sym:'ITC',sector:'FMCG'},{sym:'SBIN',sector:'Banking'},{sym:'BHARTIARTL',sector:'Telecom'},
-  {sym:'KOTAKBANK',sector:'Banking'},{sym:'LT',sector:'Infra'},{sym:'HCLTECH',sector:'IT'},
-  {sym:'AXISBANK',sector:'Banking'},{sym:'MARUTI',sector:'Auto'},{sym:'SUNPHARMA',sector:'Pharma'},
-  {sym:'TITAN',sector:'Consumer'},{sym:'BAJFINANCE',sector:'NBFC'},{sym:'WIPRO',sector:'IT'},
-  {sym:'NESTLEIND',sector:'FMCG'},{sym:'ONGC',sector:'Energy'},{sym:'POWERGRID',sector:'Power'},
-  {sym:'NTPC',sector:'Power'},{sym:'TECHM',sector:'IT'},{sym:'TATASTEEL',sector:'Metal'},
-  {sym:'JSWSTEEL',sector:'Metal'},{sym:'ADANIENT',sector:'Conglomerate'},{sym:'ULTRACEMCO',sector:'Cement'},
-  {sym:'GRASIM',sector:'Diversified'},{sym:'ASIANPAINT',sector:'Consumer'},{sym:'M&M',sector:'Auto'},
-  {sym:'COALINDIA',sector:'Mining'},{sym:'TATACONSUM',sector:'FMCG'},{sym:'BAJAJFINSV',sector:'NBFC'},
-  {sym:'DRREDDY',sector:'Pharma'},{sym:'DIVISLAB',sector:'Pharma'},{sym:'CIPLA',sector:'Pharma'},
-  {sym:'TATAMOTORS',sector:'Auto'},{sym:'HINDALCO',sector:'Metal'},{sym:'INDUSINDBK',sector:'Banking'},
-  {sym:'BRITANNIA',sector:'FMCG'},{sym:'BPCL',sector:'Energy'},{sym:'EICHERMOT',sector:'Auto'},
-  {sym:'HEROMOTOCO',sector:'Auto'},{sym:'SHRIRAMFIN',sector:'NBFC'},{sym:'APOLLOHOSP',sector:'Healthcare'},
-  {sym:'ADANIPORTS',sector:'Logistics'},{sym:'TRENT',sector:'Retail'},{sym:'BEL',sector:'Defence'},
-  {sym:'BAJAJ-AUTO',sector:'Auto'},{sym:'SBILIFE',sector:'Insurance'},
-];
-
-// Active watchlist — starts as Nifty 50, user can modify
-function toggleManager() {
-  const body = document.getElementById('stockManagerBody');
-  const toggle = document.getElementById('managerToggle');
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  toggle.classList.toggle('open', !isOpen);
-  toggle.textContent = isOpen ? '▼ Manage' : '▲ Close';
-  if (!isOpen) renderChips();
-}
-
-// ─── Multi-Watchlist System ───────────────────────────────
-const WL_STORAGE_KEY = 'breakoutscan_watchlists_v2';
-
-// Default watchlists structure
-const DEFAULT_WATCHLISTS = [
-  { id: 'nifty50', name: 'Nifty 50', stocks: [...NIFTY50_DEFAULT] },
-  { id: 'my-picks', name: 'My Picks', stocks: [] },
-];
-
-let allWatchlists = [];   // array of { id, name, stocks[] }
-let activeWlId = 'nifty50';
-
-// Simple getter — always returns active watchlist stocks
-function getWatchlist() { return getActiveWl()?.stocks || []; }
-
-function getActiveWl() {
-  return allWatchlists.find(w => w.id === activeWlId) || allWatchlists[0];
-}
-
-function genId() {
-  return 'wl_' + Date.now().toString(36);
-}
-
-// ── Persistence ──
-function saveAllWatchlists() {
-  try {
-    localStorage.setItem(WL_STORAGE_KEY, JSON.stringify({ active: activeWlId, lists: allWatchlists }));
-    showSavedIndicator();
-  } catch(e) {}
-}
-
-function loadAllWatchlists() {
-  try {
-    const raw = localStorage.getItem(WL_STORAGE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed?.lists?.length > 0) {
-        allWatchlists = parsed.lists;
-        activeWlId = parsed.active || allWatchlists[0].id;
-        return true;
-      }
-    }
-  } catch(e) {}
-  // First time — use defaults
-  allWatchlists = JSON.parse(JSON.stringify(DEFAULT_WATCHLISTS));
-  activeWlId = 'nifty50';
-  return false;
-}
-
-// ── Render Tabs ──
-function renderTabs() {
-  const container = document.getElementById('wlTabs');
-  container.innerHTML = allWatchlists.map(wl => `
-    <div class="wl-tab ${wl.id === activeWlId ? 'active' : ''}" onclick="switchWatchlist('${wl.id}')">
-      <span ondblclick="startRename('${wl.id}', event)">${wl.name}</span>
-      <span class="tab-count">${wl.stocks.length}</span>
-      ${allWatchlists.length > 1 ? `<button class="tab-delete" onclick="deleteWatchlist('${wl.id}', event)" title="Delete">×</button>` : ''}
-    </div>
-  `).join('') + `<button class="wl-add-tab" onclick="createWatchlist()">+ New</button>`;
-
-  // Update header badge and name
-  const active = getActiveWl();
-  document.getElementById('stockCountBadge').textContent = active?.stocks.length || 0;
-  document.getElementById('activeWlName').textContent = active?.name || '';
-  document.getElementById('sumUniverse').textContent = `${active?.stocks.length || 0} stocks · ${active?.name}`;
-}
-
-function renderChips() {
-  const wrap = document.getElementById('stockChips');
-  const stocks = getActiveWl()?.stocks || [];
-  wrap.innerHTML = stocks.map((s, i) => `
-    <div class="stock-chip">
-      <span>${s.sym}</span>
-      <span class="chip-sector">${s.sector}</span>
-      <button class="chip-remove" onclick="removeStock(${i})" title="Remove">×</button>
-    </div>
-  `).join('');
-  renderTabs();
-}
-
-// ── Switch Watchlist ──
-function switchWatchlist(id) {
-  activeWlId = id;
-  saveAllWatchlists();
-  renderChips();
-  log(`Switched to watchlist: ${getActiveWl().name} (${getActiveWl().stocks.length} stocks)`, 'info');
-}
-
-// ── Create New Watchlist ──
-function createWatchlist() {
-  const name = prompt('Watchlist name:', 'My Watchlist ' + (allWatchlists.length + 1));
-  if (!name?.trim()) return;
-  const newWl = { id: genId(), name: name.trim(), stocks: [] };
-  allWatchlists.push(newWl);
-  activeWlId = newWl.id;
-  saveAllWatchlists();
-  renderChips();
-  log(`Created new watchlist: ${name}`, 'success');
-}
-
-// ── Delete Watchlist ──
-function deleteWatchlist(id, e) {
-  e.stopPropagation();
-  const wl = allWatchlists.find(w => w.id === id);
-  if (!confirm(`Delete watchlist "${wl?.name}"?`)) return;
-  allWatchlists = allWatchlists.filter(w => w.id !== id);
-  if (activeWlId === id) activeWlId = allWatchlists[0]?.id;
-  saveAllWatchlists();
-  renderChips();
-}
-
-// ── Rename Watchlist ──
-function startRename(id, e) {
-  e.stopPropagation();
-  const wl = allWatchlists.find(w => w.id === id);
-  if (!wl) return;
-  const span = e.target;
-  const input = document.createElement('input');
-  input.className = 'wl-rename-input';
-  input.value = wl.name;
-  span.replaceWith(input);
-  input.focus(); input.select();
-  const finish = () => {
-    const newName = input.value.trim() || wl.name;
-    wl.name = newName;
-    saveAllWatchlists();
-    renderTabs();
-  };
-  input.onblur = finish;
-  input.onkeydown = e => { if (e.key === 'Enter') input.blur(); if (e.key === 'Escape') { input.value = wl.name; input.blur(); } };
-}
-
-// ── Add Stock ──
-function addStock() {
-  const input = document.getElementById('newStockInput');
-  const sector = document.getElementById('newStockSector').value;
-  const raw = input.value.trim().toUpperCase();
-  if (!raw) return;
-  const syms = raw.split(/[,\s]+/).filter(Boolean);
-  const activeStocks = getActiveWl().stocks;
-  let added = 0;
-  syms.forEach(sym => {
-    if (!activeStocks.find(s => s.sym === sym)) {
-      activeStocks.push({ sym, sector });
-      added++;
-    }
-  });
-  input.value = '';
-  renderChips();
-  saveAllWatchlists();
-  if (added > 0) log(`Added ${added} stock(s) to "${getActiveWl().name}": ${syms.join(', ')}`, 'success');
-  else log(`Stock(s) already in watchlist.`, 'warn');
-}
-
-// ── Remove Stock ──
-function removeStock(idx) {
-  const activeStocks = getActiveWl().stocks;
-  const sym = activeStocks[idx].sym;
-  activeStocks.splice(idx, 1);
-  renderChips();
-  saveAllWatchlists();
-  log(`Removed ${sym} from "${getActiveWl().name}".`, 'warn');
-}
-
-// ── Reset to Nifty 50 ──
-function resetToNifty50() {
-  if (!confirm(`Reset "${getActiveWl().name}" to Nifty 50 stocks?`)) return;
-  getActiveWl().stocks = [...NIFTY50_DEFAULT];
-  renderChips();
-  saveAllWatchlists();
-  log('Watchlist reset to Nifty 50.', 'info');
-}
-
-// ── Clear All ──
-function clearAll() {
-  if (!confirm(`Clear all stocks from "${getActiveWl().name}"?`)) return;
-  getActiveWl().stocks = [];
-  renderChips();
-  saveAllWatchlists();
-  log('Watchlist cleared.', 'warn');
-}
-
-// ── Export ──
-function exportWatchlist() {
-  const data = JSON.stringify(getActiveWl(), null, 2);
-  const blob = new Blob([data], {type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `watchlist-${getActiveWl().name.replace(/\s+/g,'-')}.json`;
-  a.click();
-}
-
-// ── Import ──
-function importWatchlist() {
-  const input = document.createElement('input');
-  input.type = 'file'; input.accept = '.json';
-  input.onchange = e => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = ev => {
-      try {
-        const data = JSON.parse(ev.target.result);
-        // Support both single watchlist {id,name,stocks} and old array format
-        if (data?.stocks && Array.isArray(data.stocks)) {
-          getActiveWl().stocks = data.stocks;
-          if (data.name) getActiveWl().name = data.name;
-          renderChips();
-          saveAllWatchlists();
-          log(`Imported ${getActiveWl().stocks.length} stocks into "${getActiveWl().name}".`, 'success');
-        } else if (Array.isArray(data) && data[0]?.sym) {
-          getActiveWl().stocks = data;
-          renderChips();
-          saveAllWatchlists();
-          log(`Imported ${getActiveWl().stocks.length} stocks.`, 'success');
-        } else {
-          alert('Invalid watchlist file format.');
-        }
-      } catch { alert('Could not parse file.'); }
-    };
-    reader.readAsText(file);
-  };
-  input.click();
-}
-
-// ── Saved indicator ──
-function saveWatchlist() { saveAllWatchlists(); }
-
-function showSavedIndicator() {
-  const el = document.getElementById('savedIndicator');
-  if (!el) return;
-  el.style.opacity = '1';
-  clearTimeout(el._t);
-  el._t = setTimeout(() => { el.style.opacity = '0'; }, 2000);
-}
-
-function loadWatchlist() { return loadAllWatchlists(); }
-
-async function fetchCandles(url) {
-  for (let attempt = 1; attempt <= 3; attempt++) {
-    try {
-      const resp = await fetchWithTimeout(url, {
-        headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Accept': 'application/json' }
-      }, 20000);
-      if (resp.ok) return resp;
-      if (resp.status === 401) { log('Token expired — please reconnect.', 'error'); return null; }
-      if (attempt < 3) { await sleep(800 * attempt); continue; }
-      return null;
-    } catch(e) {
-      if (attempt < 3) { await sleep(800 * attempt); continue; }
-      return null;
-    }
-  }
-  return null;
-}
-// ─── 5-min Aggregator ────────────────────────────────────
-function aggregate1mTo5m(candles1m) {
-  // Upstox candle format: [timestamp, open, high, low, close, volume, oi]
-  // candles1m is newest-first; reverse to chronological
-  const chron = [...candles1m].reverse();
-  const result = [];
-  for (let i = 0; i < chron.length; i += 5) {
-    const group = chron.slice(i, i + 5);
-    if (group.length === 0) continue;
-    const ts    = group[0][0];
-    const open  = group[0][1];
-    const high  = Math.max(...group.map(c => c[2]));
-    const low   = Math.min(...group.map(c => c[3]));
-    const close = group[group.length - 1][4];
-    const vol   = group.reduce((s, c) => s + c[5], 0);
-    result.push([ts, open, high, low, close, vol]);
-  }
-  // Return newest-first to match Upstox format
-  return result.reverse();
-}
-
-// ─── Mode (Intraday / Swing) ──────────────────────────────
-let scanMode = 'intraday'; // 'intraday' | 'swing'
-
-function setMode(mode) {
-  scanMode = mode;
-  document.body.classList.toggle('swing-mode', mode === 'swing');
-  document.getElementById('modeIntraday').classList.toggle('active', mode === 'intraday');
-  document.getElementById('modeSwing').classList.toggle('active', mode === 'swing');
-
-  // Adjust default vol threshold for swing (lower is fine, trends are slower)
-  if (mode === 'swing') {
-    document.getElementById('volFilter').value = '1.5';
-    document.getElementById('minMoveFilter').value = '1';
-    document.getElementById('scanBtnText').textContent = '▶ Swing Scan';
-  } else {
-    document.getElementById('volFilter').value = '2';
-    document.getElementById('minMoveFilter').value = '0.5';
-    document.getElementById('scanBtnText').textContent = '▶ Run Scan';
-  }
-}
-
-// ─── Health Tag Engine ────────────────────────────────────
-function getHealthTags(r) {
-  const tags = [];
-
-  // Already moved too much today — bad for intraday entry
-  const todayMove = Math.abs((r.ltp - r.open) / r.open * 100);
-  if (todayMove > 4) tags.push({ label: `+${todayMove.toFixed(1)}% today`, type: 'bad', tip: 'Already ran — late entry risk' });
-  else if (todayMove > 2) tags.push({ label: `+${todayMove.toFixed(1)}% today`, type: 'warn', tip: 'Moderate move — check R:R' });
-
-  // RSI zone
-  if (r.rsi) {
-    if (r.rsi > 70) tags.push({ label: `RSI ${r.rsi.toFixed(0)} overbought`, type: 'bad', tip: 'Overbought — reversal risk' });
-    else if (r.rsi > 60) tags.push({ label: `RSI ${r.rsi.toFixed(0)}`, type: 'good', tip: 'Healthy momentum zone' });
-    else if (r.rsi < 40) tags.push({ label: `RSI ${r.rsi.toFixed(0)} oversold`, type: 'warn', tip: 'Weak momentum' });
-  }
-
-  // Volume quality
-  if (r.volRatio >= 3) tags.push({ label: `${r.volRatio}x volume`, type: 'good', tip: 'Strong institutional activity' });
-  else if (r.volRatio >= 1.5) tags.push({ label: `${r.volRatio}x volume`, type: 'warn', tip: 'Moderate volume' });
-
-  // Score
-  if (r.score >= 85) tags.push({ label: `Score ${r.score}`, type: 'good', tip: 'High quality setup' });
-
-  return tags;
-}
-
-// ─── Suit Label (Intraday / Swing / Both) ─────────────────
-function getSuitLabel(r) {
-  const todayMove = Math.abs((r.ltp - (r.open || r.ltp)) / (r.open || r.ltp) * 100);
-  const rsi = r.rsi || 55;
-  const isOverbought = rsi > 70;
-  const bigMoveToday = todayMove > 3;
-
-  if (isOverbought && bigMoveToday) {
-    // Already moved a lot + overbought → swing only (need consolidation first)
-    return { label: '📈 Swing Trade', cls: 'suit-swing', tip: 'Better suited for multi-day hold. Too extended for safe intraday entry.' };
-  } else if (!isOverbought && !bigMoveToday) {
-    // Clean, not extended → good for both
-    return { label: '⚡ Intraday + 📈 Swing', cls: 'suit-both', tip: 'Clean setup — works for intraday entry or swing hold.' };
-  } else if (bigMoveToday && !isOverbought) {
-    // Moved today but RSI not overbought → swing lean
-    return { label: '📈 Swing preferred', cls: 'suit-swing', tip: 'Moved today — consider swing entry on pullback.' };
-  } else {
-    // Default
-    return { label: '⚡ Intraday', cls: 'suit-intraday', tip: 'Suitable for intraday momentum entry.' };
-  }
-}
-
 // ─── State ───────────────────────────────────────────────
 let ACCESS_TOKEN = '';
 let isDemoMode = false;
-// Routed through a Netlify function — the real Upstox token stays server-side.
-// See BACKEND_PROXY_SETUP.md. If Upstox rejects the Analytics Token on these
-// v2 paths, switch this to '/api/upstox/v3' and adjust the historical-candle
-// URL format per Upstox's v3 docs.
-const BASE = '/api/upstox/v2';
+const BASE = '/api/upstox-proxy'; // Token stored in Vercel env var UPSTOX_TOKEN
 
-// (Stock list managed via WATCHLIST above)
+// Nifty 50 symbols with sectors — keys fetched dynamically at scan time
+const NIFTY50 = [
+  {sym:'RELIANCE',sector:'Energy'},
+  {sym:'TCS',sector:'IT'},
+  {sym:'HDFCBANK',sector:'Banking'},
+  {sym:'INFY',sector:'IT'},
+  {sym:'ICICIBANK',sector:'Banking'},
+  {sym:'HINDUNILVR',sector:'FMCG'},
+  {sym:'ITC',sector:'FMCG'},
+  {sym:'SBIN',sector:'Banking'},
+  {sym:'BHARTIARTL',sector:'Telecom'},
+  {sym:'KOTAKBANK',sector:'Banking'},
+  {sym:'LT',sector:'Infra'},
+  {sym:'HCLTECH',sector:'IT'},
+  {sym:'AXISBANK',sector:'Banking'},
+  {sym:'MARUTI',sector:'Auto'},
+  {sym:'SUNPHARMA',sector:'Pharma'},
+  {sym:'TITAN',sector:'Consumer'},
+  {sym:'BAJFINANCE',sector:'NBFC'},
+  {sym:'WIPRO',sector:'IT'},
+  {sym:'NESTLEIND',sector:'FMCG'},
+  {sym:'ONGC',sector:'Energy'},
+  {sym:'POWERGRID',sector:'Power'},
+  {sym:'NTPC',sector:'Power'},
+  {sym:'TECHM',sector:'IT'},
+  {sym:'TATASTEEL',sector:'Metal'},
+  {sym:'JSWSTEEL',sector:'Metal'},
+  {sym:'ADANIENT',sector:'Conglomerate'},
+  {sym:'ULTRACEMCO',sector:'Cement'},
+  {sym:'GRASIM',sector:'Diversified'},
+  {sym:'ASIANPAINT',sector:'Consumer'},
+  {sym:'M&M',sector:'Auto'},
+  {sym:'COALINDIA',sector:'Mining'},
+  {sym:'TATACONSUM',sector:'FMCG'},
+  {sym:'BAJAJFINSV',sector:'NBFC'},
+  {sym:'DRREDDY',sector:'Pharma'},
+  {sym:'DIVISLAB',sector:'Pharma'},
+  {sym:'CIPLA',sector:'Pharma'},
+  {sym:'TATAMOTORS',sector:'Auto'},
+  {sym:'HINDALCO',sector:'Metal'},
+  {sym:'INDUSINDBK',sector:'Banking'},
+  {sym:'BRITANNIA',sector:'FMCG'},
+  {sym:'BPCL',sector:'Energy'},
+  {sym:'EICHERMOT',sector:'Auto'},
+  {sym:'HEROMOTOCO',sector:'Auto'},
+  {sym:'SHRIRAMFIN',sector:'NBFC'},
+  {sym:'APOLLOHOSP',sector:'Healthcare'},
+  {sym:'ADANIPORTS',sector:'Logistics'},
+  {sym:'TRENT',sector:'Retail'},
+  {sym:'BEL',sector:'Defence'},
+  {sym:'BAJAJ-AUTO',sector:'Auto'},
+  {sym:'SBILIFE',sector:'Insurance'},
+];
 
 // Cache for resolved instrument keys
 const keyCache = {};
 
-// Timeout wrapper for fetch calls
-function fetchWithTimeout(url, options, ms = 15000) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), ms);
-  return fetch(url, { ...options, signal: controller.signal })
-    .finally(() => clearTimeout(timer));
-}
-
-// Fetch instrument key dynamically from Upstox search API — with 1 retry
+// Fetch instrument key dynamically from Upstox search API
 async function resolveKey(sym) {
   if (keyCache[sym]) return keyCache[sym];
-  for (let attempt = 1; attempt <= 2; attempt++) {
-    try {
-      const searchSym = sym === 'M&M' ? 'M%26M' : encodeURIComponent(sym);
-      const url = `${BASE}/instruments/search?query=${searchSym}&exchanges=NSE&instrument_types=EQ`;
-      const resp = await fetchWithTimeout(url, {
-        headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Accept': 'application/json' }
-      }, 12000);
-      if (!resp.ok) {
-        if (resp.status === 401) { log(`Token expired — please reconnect.`, 'error'); return null; }
-        if (attempt === 2) { log(`${sym}: API error ${resp.status}`, 'error'); return null; }
-        await sleep(500); continue;
-      }
-      const data = await resp.json();
-      const instruments = data?.data || [];
-      const match = instruments.find(i =>
-        i.trading_symbol === sym && i.segment === 'NSE_EQ'
-      ) || instruments.find(i =>
-        i.trading_symbol === sym
-      );
-      if (match?.instrument_key) {
-        keyCache[sym] = match.instrument_key;
-        return match.instrument_key;
-      }
-      // Symbol not found on NSE
-      log(`${sym}: not found on NSE — check symbol spelling`, 'warn');
-      return null;
-    } catch(e) {
-      if (e.name === 'AbortError') {
-        if (attempt === 1) { log(`${sym}: timeout, retrying...`, 'warn'); await sleep(1000); }
-        else { log(`${sym}: timed out after retry — skipped`, 'warn'); return null; }
-      } else {
-        log(`${sym}: ${e.message}`, 'error'); return null;
-      }
+  try {
+    const url = `${BASE}/instruments/search?query=${encodeURIComponent(sym)}&exchanges=NSE&instrument_types=EQ`;
+    const resp = await fetch(url, {
+      headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Accept': 'application/json' }
+    });
+    if (!resp.ok) return null;
+    const data = await resp.json();
+    const instruments = data?.data || [];
+    // Find exact trading symbol match on NSE_EQ
+    const match = instruments.find(i =>
+      i.trading_symbol === sym && i.segment === 'NSE_EQ'
+    ) || instruments.find(i =>
+      i.trading_symbol === sym
+    );
+    if (match?.instrument_key) {
+      keyCache[sym] = match.instrument_key;
+      return match.instrument_key;
     }
+    return null;
+  } catch(e) {
+    return null;
   }
-  return null;
 }
 
 // ─── Logging ──────────────────────────────────────────────
@@ -1742,13 +761,11 @@ function log(msg, type='info') {
 
 // ─── Auth ─────────────────────────────────────────────────
 function connect() {
-  // No token needed from the user anymore — every Upstox call is proxied
-  // server-side through netlify/functions/upstox-proxy.js, which attaches
-  // the Analytics Token. This function just moves past the (now unused)
-  // auth screen so the rest of the app's flow stays unchanged.
-  ACCESS_TOKEN = 'proxied';
+  const t = document.getElementById('tokenInput').value.trim();
+  if (!t) { alert('Please paste your Upstox access token.'); return; }
+  ACCESS_TOKEN = t;
   showMain();
-  log('Connected via server proxy. Ready to scan.', 'success');
+  log('Token accepted. Ready to scan.', 'success');
   fetchNiftyIndex();
 }
 
@@ -1836,18 +853,8 @@ async function runScan() {
 
   const volThresh = parseFloat(document.getElementById('volFilter').value);
   const minMove = parseFloat(document.getElementById('minMoveFilter').value);
-  const minAvgVol = parseInt(document.getElementById('minAvgVolFilter').value);
 
-  const marketOpen = isMarketOpen();
-  const currentMode = scanMode; // global scanMode
-  const modeLabel = currentMode === 'swing'
-    ? `Swing (${document.getElementById('swingTfFilter').value} / ${document.getElementById('swingRangeFilter').value}d)`
-    : (marketOpen ? `Intraday (${document.getElementById('tfFilter').value})` : 'Daily candles (Evening)');
-  log(`Starting scan — Mode: ${modeLabel} | Vol: ${volThresh}x | Min move: ${minMove}% | Min avg vol: ${minAvgVol > 0 ? (minAvgVol/100000).toFixed(0)+'L' : 'Any'}`, 'info');
-  if (!marketOpen && currentMode !== 'swing') log('Market closed → using Daily candle data for evening stock picking.', 'warn');
-
-  // Clear key cache so fresh keys are fetched
-  Object.keys(keyCache).forEach(k => delete keyCache[k]);
+  log(`Starting scan — vol threshold: ${volThresh}x, min move: ${minMove}%`, 'info');
 
   let results = [];
 
@@ -1855,7 +862,7 @@ async function runScan() {
     results = getDemoData();
     await sleep(1500);
   } else {
-    results = await scanLive(volThresh, minMove, minAvgVol);
+    results = await scanLive(volThresh, minMove);
   }
 
   // Sort by score desc
@@ -1869,9 +876,8 @@ async function runScan() {
   const watch = results.filter(r => r.signal === 'WATCH').length;
   document.getElementById('sumBreakout').textContent = strong;
   document.getElementById('sumWatch').textContent = watch;
-  document.getElementById('sumTotal').textContent = getWatchlist().length;
+  document.getElementById('sumTotal').textContent = NIFTY50.length;
   document.getElementById('sumTime').textContent = new Date().toLocaleTimeString('en-IN', {hour:'2-digit', minute:'2-digit'});
-  document.getElementById('sumAutoRefresh').textContent = scanMode === 'swing' ? 'Swing scan' : (isMarketOpen() ? 'Live intraday scan' : 'Evening daily scan');
 
   btn.disabled = false;
   spinner.style.display = 'none';
@@ -1879,108 +885,45 @@ async function runScan() {
   log(`Scan complete. ${strong} breakout(s), ${watch} watch(es) found.`, 'success');
 }
 
-async function scanLive(volThresh, minMove, minAvgVol = 0) {
+async function scanLive(volThresh, minMove) {
   const results = [];
-  const batchSize = 3;
-  const stockTimeout = ms => new Promise(res => setTimeout(() => res(null), ms));
-  const wl = getWatchlist();
-
-  // ── Step 1: Pre-resolve all instrument keys in bulk ──
-  log(`Pre-resolving instrument keys for ${wl.length} stocks...`, 'info');
-  const keyBatchSize = 5;
-  for (let i = 0; i < wl.length; i += keyBatchSize) {
-    const batch = wl.slice(i, i + keyBatchSize);
-    await Promise.all(batch.map(s => resolveKey(s.sym)));
-    await sleep(300);
-  }
-  const resolved = wl.filter(s => keyCache[s.sym]);
-  const failed = wl.filter(s => !keyCache[s.sym]);
-  if (failed.length > 0) log(`Could not resolve: ${failed.map(s=>s.sym).join(', ')}`, 'warn');
-  log(`Keys resolved: ${resolved.length}/${wl.length}. Starting candle scan...`, 'success');
-
-  // ── Step 2: Scan candles for resolved stocks ──
-  for (let i = 0; i < resolved.length; i += batchSize) {
-    const batch = resolved.slice(i, i + batchSize);
-    document.getElementById('scanProgress').textContent = `${Math.min(i+batchSize, resolved.length)}/${resolved.length} stocks...`;
+  // Batch requests in groups of 5
+  const batchSize = 5;
+  for (let i = 0; i < NIFTY50.length; i += batchSize) {
+    const batch = NIFTY50.slice(i, i + batchSize);
+    document.getElementById('scanProgress').textContent = `${Math.min(i+batchSize, NIFTY50.length)}/${NIFTY50.length} stocks...`;
     log(`Scanning ${batch.map(b=>b.sym).join(', ')}...`);
-    const batchResults = await Promise.all(
-      batch.map(s => Promise.race([
-        analyzeStock(s, volThresh, minMove, minAvgVol),
-        stockTimeout(75000).then(() => { log(`${s.sym}: candle fetch timeout — try again`, 'warn'); return null; })
-      ]))
-    );
+    const batchResults = await Promise.all(batch.map(s => analyzeStock(s, volThresh, minMove)));
     batchResults.forEach(r => { if (r) results.push(r); });
-    await sleep(400);
+    await sleep(300); // rate limit buffer
   }
   return results;
 }
 
-function isMarketOpen() {
-  const now = new Date();
-  const h = now.getHours(), m = now.getMinutes();
-  const mins = h * 60 + m;
-  const isWeekday = now.getDay() >= 1 && now.getDay() <= 5;
-  return isWeekday && mins >= (9*60+15) && mins <= (15*60+30);
-}
-
-function getDateRange(days) {
-  const to = new Date();
-  const from = new Date();
-  from.setDate(from.getDate() - days);
-  const fmt = d => d.toISOString().split('T')[0];
-  return { from: fmt(from), to: fmt(to) };
-}
-
-async function analyzeStock(stock, volThresh, minMove, minAvgVol = 0) {
+async function analyzeStock(stock, volThresh, minMove) {
   try {
+    const tf = document.getElementById('tfFilter').value;
+    // Resolve instrument key dynamically
     const instrKey = await resolveKey(stock.sym);
     if (!instrKey) { log(`${stock.sym}: could not resolve instrument key`, 'warn'); return null; }
-    const encodedKey = instrKey.replace(/\|/g, '%7C');
+    const encodedKey = instrKey.replace('|', '%7C');
+    const url = `${BASE}/historical-candle/intraday/${encodedKey}/${tf}`;
+    const resp = await fetch(url, {
+      headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}`, 'Accept': 'application/json' }
+    });
+    if (!resp.ok) { log(`${stock.sym}: API error ${resp.status}`, 'error'); return null; }
+    const data = await resp.json();
+    const candles = data?.data?.candles;
+    if (!candles || candles.length < 20) return null;
 
-    let candles = null;
-    const marketOpen = isMarketOpen();
-    const isSwing = scanMode === 'swing';
-
-    if (isSwing) {
-      // ── Swing mode: always use historical candles ──
-      const swingTf = document.getElementById('swingTfFilter').value; // day/week/month
-      const swingDays = parseInt(document.getElementById('swingRangeFilter').value);
-      const { from, to } = getDateRange(swingDays);
-      const url = `${BASE}/historical-candle/${encodedKey}/${swingTf}/${to}/${from}`;
-      const resp = await fetchCandles(url);
-      if (!resp) { log(`${stock.sym}: candle fetch failed after 3 attempts`, 'warn'); return null; }
-      const data = await resp.json();
-      candles = data?.data?.candles;
-      if (candles) candles = [...candles].reverse();
-    } else if (marketOpen) {
-      const tf = document.getElementById('tfFilter').value;
-      const apiTf = (tf === '5minute') ? '1minute' : tf;
-      const url = `${BASE}/historical-candle/intraday/${encodedKey}/${apiTf}`;
-      const resp = await fetchCandles(url);
-      if (!resp) { log(`${stock.sym}: candle fetch failed after 3 attempts`, 'warn'); return null; }
-      const data = await resp.json();
-      let rawCandles = data?.data?.candles;
-      if (tf === '5minute' && rawCandles) rawCandles = aggregate1mTo5m(rawCandles);
-      candles = rawCandles;
-    } else {
-      const { from, to } = getDateRange(60);
-      const url = `${BASE}/historical-candle/${encodedKey}/day/${to}/${from}`;
-      const resp = await fetchCandles(url);
-      if (!resp) { log(`${stock.sym}: candle fetch failed after 3 attempts`, 'warn'); return null; }
-      const data = await resp.json();
-      candles = data?.data?.candles;
-      if (candles) candles = [...candles].reverse();
-    }
-
-    if (!candles || candles.length < 10) return null;
-    return computeSignal(stock, candles, volThresh, minMove, minAvgVol);
+    return computeSignal(stock, candles, volThresh, minMove);
   } catch(e) {
     log(`${stock.sym}: ${e.message}`, 'error');
     return null;
   }
 }
 
-function computeSignal(stock, candles, volThresh, minMove, minAvgVol = 0) {
+function computeSignal(stock, candles, volThresh, minMove) {
   // candles: [[timestamp, open, high, low, close, volume, oi], ...]
   // Latest candle is last
   const len = candles.length;
@@ -1993,12 +936,6 @@ function computeSignal(stock, candles, volThresh, minMove, minAvgVol = 0) {
   const volSlice = candles.slice(Math.max(0, len-21), len-1).map(c => c[5]);
   const avgVol = volSlice.reduce((a,b) => a+b, 0) / volSlice.length;
   const volRatio = vol / avgVol;
-
-  // ── Min avg volume filter — eliminates pump & dump candidates ──
-  if (minAvgVol > 0 && avgVol < minAvgVol) {
-    log(`${stock.sym}: skipped (avg vol ${Math.round(avgVol/1000)}K < min ${Math.round(minAvgVol/100000)}L)`, 'warn');
-    return null;
-  }
 
   // Price move from prev close
   const priceMovePC = ((c - pc) / pc) * 100;
@@ -2088,12 +1025,8 @@ function getDemoData() {
 }
 
 // ─── Render Results ───────────────────────────────────────
-let lastScanResults = [];
-
 function renderResults(results) {
   const wrap = document.getElementById('resultsWrap');
-  lastScanResults = results;
-
   if (!results.length) {
     wrap.innerHTML = `<div class="empty-state"><div class="icon">🔍</div><p>No breakout signals found with current filters. Try lowering thresholds.</p></div>`;
     return;
@@ -2101,12 +1034,8 @@ function renderResults(results) {
 
   const strong = results.filter(r => r.signal === 'BREAKOUT');
   const watch = results.filter(r => r.signal === 'WATCH');
-  const planCandidates = results.filter(r => r.brokeOut);
 
   wrap.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:flex-end;margin-bottom:12px">
-      ${planCandidates.length > 0 ? `<button class="plan-btn" onclick="openPlanModal()">📋 Save Tonight's Plan <span style="background:rgba(255,255,255,0.2);border-radius:10px;padding:1px 7px;font-size:11px">${planCandidates.length}</span></button>` : ''}
-    </div>
     ${renderTable(strong, 'BREAKOUT', '🚀')}
     ${watch.length ? renderTable(watch, 'WATCH', '👀') : ''}
   `;
@@ -2124,23 +1053,11 @@ function renderTable(items, type, icon) {
     const sigLabel = r.signal === 'BREAKOUT' ? '● BREAKOUT' : '◐ WATCH';
     const patBadge = r.pattern ? `<span class="pattern-badge bullish">${r.pattern}</span>` : '—';
     const scoreColor = r.score >= 75 ? 'var(--bull)' : r.score >= 50 ? 'var(--warn)' : 'var(--muted)';
-
-    // Health tags
-    const tags = getHealthTags(r);
-    const tagsHtml = tags.length ? `<div class="health-tags">${tags.map(t =>
-      `<span class="htag htag-${t.type}" title="${t.tip}">${t.label}</span>`
-    ).join('')}</div>` : '';
-
-    // Suit label
-    const suit = getSuitLabel(r);
-    const suitHtml = `<span class="suit-badge ${suit.cls}" title="${suit.tip}">${suit.label}</span>`;
-
     return `
       <tr>
         <td>
           <div class="stock-name">${r.sym}</div>
           <div class="stock-sector">${r.sector}</div>
-          ${tagsHtml}
         </td>
         <td style="color:var(--text)">₹${r.ltp.toLocaleString('en-IN')}</td>
         <td class="${pct >= 0 ? 'up' : 'down'}">${pct >= 0 ? '+' : ''}${r.pct}%</td>
@@ -2156,10 +1073,7 @@ function renderTable(items, type, icon) {
         </td>
         <td>${patBadge}</td>
         <td style="color:${scoreColor};font-weight:700">${r.score}</td>
-        <td>
-          <span class="signal-badge ${sigClass}">${sigLabel}</span><br>
-          <div style="margin-top:4px">${suitHtml}</div>
-        </td>
+        <td><span class="signal-badge ${sigClass}">${sigLabel}</span></td>
       </tr>
     `;
   }).join('');
@@ -2171,7 +1085,7 @@ function renderTable(items, type, icon) {
         <thead>
           <tr>
             <th>Stock</th><th>LTP</th><th>Change</th><th>Volume</th>
-            <th>Breakout</th><th>Pattern</th><th>Score</th><th>Signal / Suit</th>
+            <th>Breakout</th><th>Pattern</th><th>Score</th><th>Signal</th>
           </tr>
         </thead>
         <tbody>${rows}</tbody>
@@ -2180,134 +1094,7 @@ function renderTable(items, type, icon) {
   `;
 }
 
-// ─── Trade Plan Modal ────────────────────────────────────
-function openPlanModal() {
-  const candidates = lastScanResults.filter(r => r.brokeOut);
-  if (!candidates.length) return;
-
-  const date = new Date();
-  const tomorrow = new Date(date); tomorrow.setDate(date.getDate() + 1);
-  const fmt = d => d.toLocaleDateString('en-IN', {weekday:'short', day:'numeric', month:'short'});
-  const isSwing = scanMode === 'swing';
-  document.getElementById('planSubtitle').textContent = isSwing
-    ? `Swing Trade Plan · ${fmt(date)} · ${candidates.length} candidate(s) · Hold: 3–10 days`
-    : `Scan date: ${fmt(date)} · Trade date: ${fmt(tomorrow)} · ${candidates.length} candidate(s) with confirmed breakout`;
-
-  document.getElementById('planCards').innerHTML = candidates.map((r, i) => {
-    const resistanceEntry = parseFloat(r.resistance) * 1.003;
-    const ltpEntry = r.ltp * 1.003;
-    const entry = Math.max(resistanceEntry, ltpEntry).toFixed(2);
-    const sl    = r.low.toFixed(2);
-    const risk  = (parseFloat(entry) - parseFloat(sl)).toFixed(2);
-    const target = (parseFloat(entry) + parseFloat(risk) * 2).toFixed(2);
-    const rr    = (parseFloat(risk) > 0 ? ((parseFloat(target) - parseFloat(entry)) / parseFloat(risk)).toFixed(1) : '—');
-    return `
-      <div class="plan-card" id="planCard_${i}">
-        <div class="plan-card-header">
-          <div>
-            <div class="plan-sym">${r.sym} <span style="font-size:12px;color:var(--muted);font-weight:400">· ${r.sector}</span></div>
-            <div class="plan-meta">Score ${r.score} · Vol ${r.volRatio}x · ${r.pattern || 'Breakout'} · LTP ₹${r.ltp.toLocaleString('en-IN')} · Entry basis: ${ltpEntry > resistanceEntry ? 'LTP+0.3%' : 'Resistance+0.3%'}</div>
-          </div>
-          <span class="plan-score-badge">● BREAKOUT</span>
-        </div>
-        <div class="plan-fields">
-          <div class="plan-field">
-            <label>Entry (₹)</label>
-            <input type="number" id="entry_${i}" value="${entry}" step="0.05" oninput="recalc(${i})" />
-          </div>
-          <div class="plan-field">
-            <label>Stop Loss (₹)</label>
-            <input type="number" id="sl_${i}" value="${sl}" step="0.05" oninput="recalc(${i})" />
-          </div>
-          <div class="plan-field">
-            <label>Target (₹)</label>
-            <input type="number" id="tgt_${i}" value="${target}" step="0.05" oninput="recalc(${i})" />
-          </div>
-          <div class="plan-field">
-            <label>Qty (shares)</label>
-            <input type="number" id="qty_${i}" value="1" min="1" oninput="recalc(${i})" />
-          </div>
-        </div>
-        <div class="plan-calc" id="calc_${i}">
-          ${buildCalc(i, entry, sl, target, 1)}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  document.getElementById('tradePlanModal').classList.add('active');
-}
-
-function buildCalc(i, entry, sl, target, qty) {
-  entry = parseFloat(entry); sl = parseFloat(sl);
-  target = parseFloat(target); qty = parseInt(qty) || 1;
-  const risk = ((entry - sl) * qty).toFixed(0);
-  const reward = ((target - entry) * qty).toFixed(0);
-  const rr = (entry - sl) > 0 ? ((target - entry) / (entry - sl)).toFixed(2) : '—';
-  const rrClass = parseFloat(rr) >= 2 ? 'rr-good' : 'rr-bad';
-  const capital = (entry * qty).toFixed(0);
-  return `
-    Risk: <span style="color:var(--bear)">₹${risk}</span> &nbsp;|&nbsp;
-    Reward: <span style="color:var(--bull)">₹${reward}</span> &nbsp;|&nbsp;
-    R:R <span class="${rrClass}">${rr}:1</span> &nbsp;|&nbsp;
-    Capital needed: <span>₹${parseInt(capital).toLocaleString('en-IN')}</span>
-  `;
-}
-
-function recalc(i) {
-  const entry = document.getElementById(`entry_${i}`).value;
-  const sl    = document.getElementById(`sl_${i}`).value;
-  const tgt   = document.getElementById(`tgt_${i}`).value;
-  const qty   = document.getElementById(`qty_${i}`).value;
-  document.getElementById(`calc_${i}`).innerHTML = buildCalc(i, entry, sl, tgt, qty);
-}
-
-function closePlanModal() {
-  document.getElementById('tradePlanModal').classList.remove('active');
-}
-
-function downloadPlan() {
-  const candidates = lastScanResults.filter(r => r.brokeOut);
-  const date = new Date().toLocaleDateString('en-IN');
-  let text = `TONIGHT'S TRADE PLAN — ${date}\n${'='.repeat(50)}\n\n`;
-
-  candidates.forEach((r, i) => {
-    const entry = document.getElementById(`entry_${i}`)?.value || '—';
-    const sl    = document.getElementById(`sl_${i}`)?.value || '—';
-    const tgt   = document.getElementById(`tgt_${i}`)?.value || '—';
-    const qty   = document.getElementById(`qty_${i}`)?.value || '1';
-    const risk  = ((parseFloat(entry) - parseFloat(sl)) * parseInt(qty)).toFixed(0);
-    const reward= ((parseFloat(tgt) - parseFloat(entry)) * parseInt(qty)).toFixed(0);
-    const rr    = (parseFloat(entry) - parseFloat(sl)) > 0
-      ? ((parseFloat(tgt) - parseFloat(entry)) / (parseFloat(entry) - parseFloat(sl))).toFixed(2)
-      : '—';
-
-    text += `${r.sym} (${r.sector}) — Score: ${r.score} | Vol: ${r.volRatio}x | ${r.pattern || 'Breakout'}\n`;
-    text += `-----------------------------------------\n`;
-    text += `  Entry Trigger : ₹${entry}\n`;
-    text += `  Stop Loss     : ₹${sl}\n`;
-    text += `  Target        : ₹${tgt}\n`;
-    text += `  Quantity      : ${qty} shares\n`;
-    text += `  Risk          : ₹${risk}\n`;
-    text += `  Reward        : ₹${reward}\n`;
-    text += `  R:R Ratio     : ${rr}:1\n`;
-    text += `  Capital Needed: ₹${(parseFloat(entry) * parseInt(qty)).toLocaleString('en-IN')}\n\n`;
-    text += `  MORNING CHECK:\n`;
-    text += `  [ ] Pre-market price near entry trigger?\n`;
-    text += `  [ ] Nifty opening positive?\n`;
-    text += `  [ ] No gap-up > 2% (entry too late)?\n`;
-    text += `  [ ] No earnings today?\n\n`;
-  });
-
-  text += `${'='.repeat(50)}\n`;
-  text += `Rule: Enter only when trigger price is hit. No trigger by 10:30 AM = skip.\n`;
-
-  const blob = new Blob([text], { type: 'text/plain' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `trade-plan-${new Date().toISOString().split('T')[0]}.txt`;
-  a.click();
-}
+// ─── Pattern Guide ────────────────────────────────────────
 const PATTERNS = [
   {
     name: 'Bullish Marubozu',
@@ -2472,31 +1259,8 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 document.addEventListener('DOMContentLoaded', () => {
   updateMarketStatus();
   renderPatternGuide();
-  const restored = loadAllWatchlists();
-  renderChips();
-  if (restored) log(`Watchlists restored — active: "${getActiveWl().name}" (${getActiveWl().stocks.length} stocks).`, 'success');
   document.getElementById('scannerTab').style.display = 'block';
-
-  // No login screen — token lives server-side in the Netlify function.
-  connect();
 });
 </script>
-<!-- Trade Plan Modal -->
-<div class="modal-overlay" id="tradePlanModal">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">📋 Tonight's Trade Plan</div>
-      <button class="modal-close" onclick="closePlanModal()">✕</button>
-    </div>
-    <div class="modal-subtitle" id="planSubtitle">Review and adjust entry, SL and target for tomorrow's trades.</div>
-    <div id="planCards"></div>
-    <div class="modal-actions">
-      <button class="modal-btn modal-btn-primary" onclick="window.print()">🖨 Print Plan</button>
-      <button class="modal-btn modal-btn-secondary" onclick="downloadPlan()">⬇ Download as Text</button>
-      <button class="modal-btn modal-btn-secondary" onclick="closePlanModal()">Close</button>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>
